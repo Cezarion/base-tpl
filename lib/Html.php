@@ -103,8 +103,9 @@ class Html
             $inline_attributes = '';
             foreach ($attributes as $attribute => $value)
             {
-                $inline_attributes = ' '.$attribute.'="'.$value.'"';
+                $inline_attributes .= ' '.$attribute.'="'.$value.'"';
             }
+
             echo '<a'.$inline_attributes.'>'.$text.'</a>';
         }
     }
@@ -146,6 +147,9 @@ class Html
             {
                 if( !is_int( $dir ) )
                 {
+                    if( !strpos($dir, '//') )
+                        $dir = ASSETS_PATH.'/'.$dir;
+
                     printf($string , $dir , $filename);
                 }
                 else
@@ -158,7 +162,8 @@ class Html
         {
             if( !is_null( @key($files) ) )
             {
-                printf($string , key( $files ) , $filename);
+                $dir = ( !strpos($dir, '//') ) ? ASSETS_PATH.'/'.key( $files ) : key( $files );
+                printf($string , $dir , $filename);
             }
             else
             {

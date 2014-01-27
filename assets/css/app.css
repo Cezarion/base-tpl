@@ -1,1 +1,5 @@
-body.top-navbar{padding-top:60px}body.admin-bar .navbar-fixed-top{top:28px}
+body
+{
+    padding-top: 50px;
+    padding-bottom: 20px;
+}

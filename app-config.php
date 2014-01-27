@@ -30,8 +30,15 @@ require_once __ROOT__.'/lib/loader.php';
  (
     'site_name' => 'Template de Base Intégration',
     'site_url' => BASE_URL,
-    'style' => array('app'),
-    'script' => array('app'),
+    'style' => array(
+                        'css/vendor' => 'bootstrap.min' ,
+                        'app'
+                    ),
+    'script' => array(
+                        'js/vendor' => 'bootstrap.min',
+                        'plugins',
+                        'app'
+                     ),
  );
 
 

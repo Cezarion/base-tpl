@@ -20,7 +20,8 @@ define('BASE_PATH', __ROOT__. '/');
 
 define('VIEWS_PATH', BASE_PATH . 'views/');
 
-define('ASSETS_PATH', BASE_URL   . 'assets');
+define('ASSETS_URL', BASE_URL   . 'assets');
+define('ASSETS_PATH', './assets');
 define('CSS_PATH',    './assets/css');
 define('JS_PATH',     './assets/js');
 define('LESS_PATH',   './assets/less');
