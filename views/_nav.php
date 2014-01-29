@@ -12,7 +12,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><?= Html::home_url( "Home" ); ?></li>
-            <li><?= Html::app_url( 'Page' , 'page' ); ?></li>
+            <li><?= Html::app_url( 'Page' , 'exemple' ); ?></li>
           </ul>
         </div>
     </div>

@@ -1,2 +1,12 @@
 php_value short_open_tag 1
 php_value date.timezone "Europe/Paris"
+
+RewriteEngine on
+Options +FollowSymlinks
+RewriteBase /_base-tpl_/
+RewriteRule ^index\.php$ - [L]
+RewriteRule ^content\/([a-z]*)$ index.php?p=$1 [L]
+RewriteRule ^content/assets/(.*)/(.*) assets/$1/$2 [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]

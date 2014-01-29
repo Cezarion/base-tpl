@@ -62,7 +62,7 @@ class Html
         if (is_null($url))
             return self::$_siteUrl;
         else if ($page = true)
-            return self::$_siteUrl . '?p=' . $url;
+            return self::$_siteUrl . 'content/' . $url;
         else
             return self::$_siteUrl . $url;
     }
