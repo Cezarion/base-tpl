@@ -39,6 +39,10 @@ require_once __ROOT__.'/lib/loader.php';
                         'plugins',
                         'app'
                      ),
+    'page_title' => array(
+                        'home' => 'Accueil',
+                        'exemple' => 'Page d\'exemple',
+                      )
  );
 
 

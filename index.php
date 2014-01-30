@@ -26,7 +26,6 @@ require_once 'app-config.php';
         <title><?php Html::title() ?></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-
         <?php Html::style(); ?>
 
         <!--[if lt IE 9]>

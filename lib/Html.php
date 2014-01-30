@@ -20,6 +20,7 @@ class Html
     public static $_js = array();
     public static $_siteName = '';
     public static $_siteUrl = '';
+    public static $_title = '';
 
     /**
      * Create a new HTML builder instance.
@@ -51,6 +52,11 @@ class Html
                 if( $action === 'site_url' )
                 {
                     self::$_siteUrl = $values;
+                }
+
+                if( $action === 'page_title' )
+                {
+                    self::set_title( $values );
                 }
             }
         }
@@ -84,12 +90,24 @@ class Html
         return self::$_siteName;
     }
 
-    public static function title ( $page_title = false )
+    public static function set_title( $page_titles )
     {
-        if( !$page_title )
+        if( isset($_GET['p']) && array_key_exists( $_GET['p'] , $page_titles ) )
+        {
+            self::$_title = $page_titles[ $_GET['p'] ];
+        }
+        else
+        {
+            self::$_title = $page_titles['home'];
+        }
+    }
+
+    public static function title ()
+    {
+        if( empty(self::$_title) )
             echo self::$_siteName;
         else
-            echo $page_title .' | '.self::$_siteName;
+            echo self::$_title .' | '.self::$_siteName;
     }
 
     public static function link ( $text , $attributes )
