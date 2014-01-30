@@ -4,7 +4,7 @@
         </p>
         <div class="jumbotron">
             <h1>Hello, world!</h1>
-            <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+            <p>This is the <strong><?php echo Html::the_title(); ?></strong> to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
         </div>
         <div class="row">
           <div class="col-6 col-sm-6 col-lg-4">

@@ -102,6 +102,11 @@ class Html
         }
     }
 
+    public static function the_title ()
+    {
+        return self::$_title;
+    }
+
     public static function title ()
     {
         if( empty(self::$_title) )
