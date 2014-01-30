@@ -11,8 +11,8 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><?= Html::home_url( "Home" ); ?></li>
-            <li><?= Html::app_url( 'Page' , 'exemple' ); ?></li>
+            <li class="<?php Html::is_active('home');?>"><?= Html::home_url( "Home" ); ?></li>
+            <li class="<?php Html::is_active('exemple');?>"><?= Html::app_url( 'Page' , 'exemple' ); ?></li>
           </ul>
         </div>
     </div>

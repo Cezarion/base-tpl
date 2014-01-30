@@ -45,42 +45,6 @@ Class Wrapper {
         include $this->_template_exist();
     }
 
-    public function get_header( $name = null )
-    {
-           $header = '_header.php';
-
-           $name = (string) $name;
-
-           if ( '' !== $name )
-                   $header = "header-{$name}.php";
-
-           include(  VIEWS_PATH . '/' . $header );
-    }
-
-    public function get_footer( $name = null )
-    {
-           $footer = '_footer.php';
-
-           $name = (string) $name;
-
-           if ( '' !== $name )
-                   $footer = "footer-{$name}.php";
-
-           include(  VIEWS_PATH . '/' . $footer );
-    }
-
-    public function get_nav( $name = null )
-    {
-           $nav = '_nav.php';
-
-           $name = (string) $name;
-
-           if ( '' !== $name )
-                   $nav = "nav-{$name}.php";
-
-           include(  VIEWS_PATH . '/' . $nav );
-    }
-
     private function _template_exist()
     {
         $filename = VIEWS_PATH . $this->setPageId() . '.php';

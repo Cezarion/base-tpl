@@ -2,7 +2,7 @@
     <div class="jumbotron">
       <div class="container">
         <h1>Hello, world!</h1>
-        <p>This is the home page</p>
+        <h2>This is the HOME page</h2>
         <p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
       </div>
     </div>

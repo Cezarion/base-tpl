@@ -17,7 +17,7 @@
 
  // =========
 
- define('SITE_PATH','_base-tpl_');
+ define('SITE_PATH','');
 
 // =========
 
@@ -45,10 +45,5 @@ require_once __ROOT__.'/lib/loader.php';
 // =========
 
 // Set template :
-$app = new Wrapper();
-$app->setPageId();
-
-// =========
-
-// Set template :
+Tpl::init();
 $html = new Html( $config );

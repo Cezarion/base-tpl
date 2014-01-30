@@ -110,6 +110,17 @@ class Html
         }
     }
 
+    public static function is_active( $item , $class = 'active' )
+    {
+        if( !isset($_GET['p']) && $item == 'home')
+        {
+            echo $class;
+            return;
+        }
+
+        if( isset($_GET['p']) && $_GET['p'] == $item )
+            echo $class;
+    }
 
     public function add_css( $css )
     {

@@ -15,7 +15,7 @@
 
  // CONFIGURATION
 
-define('BASE_URL', 'http://' . $_SERVER['SERVER_NAME'] .'/'. SITE_PATH.'/' );
+define('BASE_URL', 'http://' . $_SERVER['SERVER_NAME'] .'/'. SITE_PATH );
 define('BASE_PATH', __ROOT__. '/');
 
 define('VIEWS_PATH', BASE_PATH . 'views/');
