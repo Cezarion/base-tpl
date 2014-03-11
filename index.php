@@ -6,7 +6,7 @@
  * Main conteneur for pages
  *
  * @author Mathias Gorenflot
- * @copyright   © Inconito
+ * @copyright   © Cezarion
  *
  * @infos : UTF-8
  *

@@ -6,8 +6,8 @@
  *
  * Description of template class
  *
- * @author inconito
- * @copyright   © Inconito
+ * @author Cezarion
+ * @copyright   © Cezarion
  *
  * @infos : UTF-8
  *

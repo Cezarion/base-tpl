@@ -6,8 +6,8 @@
  *
  * Description of template class
  *
- * @author inconito
- * @copyright   © Inconito
+ * @author Cezarion
+ * @copyright   © Cezarion
  *
  * @infos : UTF-8
  *
@@ -28,20 +28,30 @@ require_once __ROOT__.'/lib/loader.php';
 
  $config = array
  (
-    'site_name' => 'Template de Base Intégration',
+    'site_name'=> 'Template de Base Intégration',
     'site_url' => BASE_URL,
-    'style' => array(
+    'style'    => array(
                         'css/vendor' => 'bootstrap.min' ,
                         'app'
                     ),
-    'script' => array(
-                        'js/vendor' => 'bootstrap.min',
+    'script'   => array(
+                        'js/vendor'  => 'bootstrap.min',
                         'plugins',
                         'app'
                      ),
-    'page_title' => array(
-                        'home' => 'Accueil',
-                        'exemple' => 'Page d\'exemple',
+    'page'     => array(
+                      'home'      => array(
+                          'title'    => 'Accueil',
+                          'class'    => 'home style',
+                          'script'   => 'my-custom-script',
+                        ),
+                        'exemple' => array(
+                            'title'  => 'Page d\'exemple',
+                            'script' => array('js/vendor/bootstrap' => array('button','alert')),
+                          ),
+                        'test'    => array(
+                            'title'  => 'Page de test',
+                          )
                       )
  );
 

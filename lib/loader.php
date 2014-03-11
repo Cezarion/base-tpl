@@ -6,8 +6,8 @@
  *
  *
  *
- * @author inconito
- * @copyright   © Inconito
+ * @author Cezarion
+ * @copyright   © Cezarion
  *
  * @infos : UTF-8
  *

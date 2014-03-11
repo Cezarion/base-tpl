@@ -60,7 +60,7 @@ class Tpl
 
            $name = ( strpos( $name , '.php') > 0 ) ? $name : $name .'.php';
 
-           include(  self::$block_path . $name );
+           self::_load_template(  self::$block_path . $name );
     }
 
     public static function load_view( $name = null )
@@ -69,11 +69,36 @@ class Tpl
 
            $name = ( strpos( $name , '.php') > 0 ) ? $name : $name .'.php';
 
-           include(  self::$view_path . $name );
+           self::_load_template(  self::$view_path . $name );
     }
 
     public static function content()
     {
            return self::$wrapper->get_template();
     }
+
+    /**
+     * Require the template file .
+     *
+     *
+     *
+     * @since 1.0.0
+     *
+     * @param string $_template_file Path to template file.
+     * @param bool $require_once Whether to require_once or require. Default true.
+     */
+  public static function _load_template( $_template_file )
+  {
+    //global $PAGE, $USER, $app;
+    if( is_file( $_template_file ) )
+    {
+      ob_start();
+        $output = extract($GLOBALS, EXTR_REFS);
+      ob_end_clean();
+      return include( $_template_file );
+    }
+
+    return trigger_error("Impossible de charger le fichier {$_template_file}", E_USER_ERROR);
+
+  }
 }

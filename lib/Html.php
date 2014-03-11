@@ -1,26 +1,30 @@
 <?php
+/**
+ * @date:   2014-02-26 11:46:47
+ *
+ * Description
+ * -----------
+ * utilities for internal site templating
+ * like set page title, internal link, menu item states, ...
+ *
+ * @author              Cezarion <cezarion@cezarion.net>
+ * @copyright           © Cezarion
+ * @last modified by    Cezarion
+ * @last modified time: 2014-02-26 11:46:47
+ *
+ * ---------------------------------------------------------------------------------------- */
 
-/* * ********************************************************************************************************
- *
- * Created on 6 mars 2012
- *
- *
- *
- * @author inconito
- * @copyright   © Inconito
- *
- * @infos : UTF-8
- *
- * ***************************************** */
 
 class Html
 {
-    protected $config = array();
-    public static $_css = array();
-    public static $_js = array();
-    public static $_siteName = '';
-    public static $_siteUrl = '';
-    public static $_title = '';
+    protected     $config      = array();
+
+    public static $_css        = array();
+    public static $_js         = array();
+    public static $_body_class = array();
+    public static $_siteName   = '';
+    public static $_siteUrl    = '';
+    public static $_title      = '';
 
     /**
      * Create a new HTML builder instance.
@@ -34,6 +38,7 @@ class Html
         {
             foreach ($config as $action => $values )
             {
+
                 if( $action === 'style' )
                 {
                     self::$_css = self::add_css($values);
@@ -54,14 +59,16 @@ class Html
                     self::$_siteUrl = $values;
                 }
 
-                if( $action === 'page_title' )
+                if( $action === 'page' )
                 {
                     self::set_title( $values );
+                    self::add_body_class( slugify(self::$_title) );
+                    self::add_custom_params($values);
                 }
             }
+
         }
     }
-
 
     public static function site_url($url = null, $page = true)
     {
@@ -94,11 +101,31 @@ class Html
     {
         if( isset($_GET['p']) && array_key_exists( $_GET['p'] , $page_titles ) )
         {
-            self::$_title = $page_titles[ $_GET['p'] ];
+            self::$_title = $page_titles[ $_GET['p'] ]['title'];
         }
-        else
+
+        self::$_title = $page_titles['home']['title'];
+    }
+
+    public static function add_custom_params( $attributes )
+    {
+        $attribute = $attributes['home'];
+
+        if( isset($_GET['p']) && array_key_exists( $_GET['p'] , $attributes ) )
         {
-            self::$_title = $page_titles['home'];
+            $attribute = $attributes[$_GET['p']];
+        }
+
+        foreach ($attribute as $key => $values)
+        {
+            if( $key === 'style')
+                self::add_css($attribute['style']);
+
+            if( $key === 'script')
+                self::add_js($attribute['script']);
+
+            if( $key === 'class')
+                self::add_body_class($attribute['class']);
         }
     }
 
@@ -145,14 +172,27 @@ class Html
             echo $class;
     }
 
-    public function add_css( $css )
+    public static function add_body_class( $customClass )
     {
-        return self::$_css = array_merge( (array) $css , self::$_css );
+       self::$_body_class = array_merge_recursive( self::$_body_class  , (array) $customClass );
     }
 
-    public function add_js( $js )
+    public static function body_class( $customClass = array() )
     {
-        return self::$_js = array_merge( (array) $js , self::$_js );
+       self::add_body_class( $customClass );
+       return implode( ' ' , self::$_body_class );
+    }
+
+    public static function add_css( $css )
+    {
+        self::$_css = array_merge_recursive( self::$_css , (array) $css);
+        return self::$_css;
+    }
+
+    public static function add_js( $js )
+    {
+        self::$_js = array_merge_recursive( self::$_js , (array) $js);
+        return self::$_js;
     }
 
     public static function style( $css = false  )
@@ -184,12 +224,16 @@ class Html
                     if( !strpos($dir, '//') )
                         $dir = ASSETS_PATH.'/'.$dir;
 
-                    printf($string , $dir , $filename);
+                    if( is_array($filename))
+                        foreach ($filename as $file) printf($string , $dir , $file);
+                    else
+                        printf($string , $dir , $filename);
                 }
                 else
                 {
                     printf($string , $path , $filename);
                 }
+
             }
         }
         elseif(!empty($files))
